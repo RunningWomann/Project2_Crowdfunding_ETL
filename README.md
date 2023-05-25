@@ -1,5 +1,10 @@
 # Project2_Crowdfunding_ETL
-Team project
+
+![istockphoto-1361894912-612x612](https://github.com/cassiecontreras/Crowdfunding-ETL/assets/126130038/c0e74ca1-2f24-476c-9873-884599ef45a2)
+
+
+### Team Members: Chun Zhao, Jing Xu, Jerrett Williams, Cassie Contreras
+
 ## Description
 
 For the ETL mini project, you will work with a partner to practice building an ETL pipeline using Python, Pandas, and either Python dictionary methods or regular expressions to extract and transform the data. After you transform the data, you'll create four CSV files and use the CSV file data to create an ERD and a table schema. Finally, you’ll upload the CSV file data into a Postgres database.
@@ -7,20 +12,19 @@ For the ETL mini project, you will work with a partner to practice building an E
 ## Resources
 Project2 ETL Files
 
-
 ## Subsections:
 ### Create the Category and Subcategory DataFrames
 
-Create a Category DataFrame that has the following columns:
+**Create a Category DataFrame that has the following columns:**
 
-A "category_id" column that is numbered sequential form 1 to the length of the number of unique categories.
-A "category" column that has only the categories.
++ A "category_id" column that is numbered sequential form 1 to the length of the number of unique categories.
++ A "category" column that has only the categories.
 Export the DataFrame as a category.csv CSV file.
 
-Create a SubCategory DataFrame that has the following columns:
+**Create a SubCategory DataFrame that has the following columns:**
 
-A "subcategory_id" column that is numbered sequential form 1 to the length of the number of unique subcategories.
-A "subcategory" column that has only the subcategories.
++ A "subcategory_id" column that is numbered sequential form 1 to the length of the number of unique subcategories.
++ A "subcategory" column that has only the subcategories.
 Export the DataFrame as a subcategory.csv CSV file.
 
 ```
