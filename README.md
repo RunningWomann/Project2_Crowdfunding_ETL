@@ -10,13 +10,14 @@ Project2 ETL Files
 
 ## Subsections:
 ### Create the Category and Subcategory DataFrames
-Create a Category DataFrame that has the following columns:
+
+-Create a Category DataFrame that has the following columns:
 
 A "category_id" column that is numbered sequential form 1 to the length of the number of unique categories.
 A "category" column that has only the categories.
 Export the DataFrame as a category.csv CSV file.
 
-Create a SubCategory DataFrame that has the following columns:
+-Create a SubCategory DataFrame that has the following columns:
 
 A "subcategory_id" column that is numbered sequential form 1 to the length of the number of unique subcategories.
 A "subcategory" column that has only the subcategories.
