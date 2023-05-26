@@ -206,7 +206,79 @@ campaign_cleaned.head()
 campaign_cleaned.to_csv('Resources/campaign.csv', index=False)
 ```
 ### Create the Contacts DataFrame
+* Iterate through the contact_info_df and convert each row to a dictionary.
+import json
+dict_values = []
+for _, row in contact_info_df.iterrows():
+    data = row[0]
+    converted_data = json.loads(data)
+    row_values = [v for v in converted_data.values()]
+    dict_values.append(row_values)
+* Print out the list of values for each row.
+print(dict_values)
 
+* Create a contact_info DataFrame and add each list of values, i.e., each row 
+* to the 'contact_id', 'name', 'email' columns.
+contact_info = pd.DataFrame(dict_values, columns=['contact_id', 'name', 'email'])
+contact_info
+
+* Reorder the columns
+contact_info = contact_info[['contact_id', 'first_name', 'last_name', 'email']]
+contact_info
+
+* Check the datatypes one more time before exporting as CSV file.
+contact_info.info()
+
+* Export the DataFrame as a CSV file. 
+contacts_df_clean = contact_info
+contacts_df_clean.to_csv("Resources/contacts.csv", encoding='utf8', index=False)
+
+** Option 2: Use regex to create the contacts DataFrame.
+import re
+contact_info_df_copy = contact_info_df.copy()
+contact_info_df_copy.head()
+
+* Extract the four-digit contact ID number.
+contact_info_df_copy['contact_id'] = contact_info_df_copy.iloc[:, 0].astype(str).str.extract(r'(\d{4})')
+contact_info_df_copy = contact_info_df_copy.rename(columns={contact_info_df_copy.columns[0]: 'contact_info'})
+contact_info_df_copy.head()
+
+* Check the datatypes.
+contact_info_df_copy.info()
+
+* Convert the "contact_id" column to an int64 data type.
+contact_info_df_copy['contact_id'] = contact_info_df_copy['contact_id'].astype('int64')
+contact_info_df_copy.info()
+
+* Extract the name of the contact and add it to a new column.
+contact_info_df_copy['name'] = contact_info_df_copy['contact_info'].str.extract(r'"name":\s*"([^"]+)"')
+contact_info_df_copy
+
+* Extract the email from the contacts and add the values to a new column.
+contact_info_df_copy['email'] = contact_info_df_copy['contact_info'].str.extract(r'"email":\s*"([^"]+)"')
+contact_info_df_copy
+
+* Create a copy of the contact_info_df with the 'contact_id', 'name', 'email' columns.
+contact_info_copy = contact_info_df_copy[['contact_id', 'name', 'email']].copy()
+contact_info_copy
+
+* Create a "first"name" and "last_name" column with the first and last names from the "name" column. 
+contact_info_copy[['first_name', 'last_name']] = contact_info_copy['name'].str.split(' ', 1, expand=True)
+
+* Drop the contact_name column
+contact_info_copy = contact_info_copy.drop(columns=['name'])
+contact_info_copy
+
+* Reorder the columns
+contact_info_copy = contact_info_copy[['contact_id', 'first_name', 'last_name', 'email']]
+contact_info_copy
+
+* Check the datatypes one more time before exporting as CSV file.
+contact_info_copy.info()
+
+* Export the DataFrame as a CSV file. 
+contacts_df_clean_regex = contact_info_copy
+contacts_df_clean_regex.to_csv("Resources/contacts_regex.csv", encoding='utf8', index=False)
 
 ### Create the Crowdfunding Database
 ```
