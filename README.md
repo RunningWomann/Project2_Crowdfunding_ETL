@@ -117,13 +117,79 @@ subcategory_df.to_csv("Resources/subcategory.csv", index=False)
 
 ### Create the Campaign DataFrame
 
-* Describe any process, steps, codes or graphs etc.
-* Any modifications needed to be made to files/folders
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Create a Campaign DataFrame that has the following columns:
 
++ The "cf_id" column.
++ The "contact_id" column.
++ The “company_name” column.
++ The "blurb" column is renamed as "description."
++ The "goal" column.
++ The "goal" column is converted to a float datatype.
++ The "pledged" column is converted to a float datatype.
++ The "backers_count" column.
++ The "country" column.
++ The "currency" column.
++ The "launched_at" column is renamed as "launch_date" and converted to a datetime format.
++ The "deadline" column is renamed as "end_date" and converted to a datetime format.
++ The "category_id" with the unique number matching the “category_id” from the category DataFrame.
++ The "subcategory_id" with the unique number matching the “subcategory_id” from the subcategory DataFrame.
++ And, create a column that contains the unique four-digit contact ID number from the contact.xlsx file.
++ Then export the DataFrame as a campaign.csv CSV file.
+
+```bash
+* Create a copy of the crowdfunding_info_df DataFrame name campaign_df. 
+campaign_df = crowdfunding_info_df.copy()
+campaign_df.head()
+```
+<img width="487" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/d03f12d8-9eb2-40d6-b4b0-605c094b6c94">
+
+```bash
+* Rename the blurb, launched_at, and deadline columns.
+campaign_df = campaign_df.rename(columns={'blurb':'description', 'launched_at': 'launch_date',  'deadline': 'end_date'})
+campaign_df.head()
+```
+<img width="485" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/566b5eb2-6555-451d-bbfc-959daef4c855">
+
+```bash
+* Convert the goal and pledged columns to a `float` data type.
+campaign_df[['goal','pledged']] = campaign_df[['goal','pledged']].astype(float)
+campaign_df.head()
+```
+<img width="481" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/623884ca-cfb8-4e05-8c80-8340922daab9">
+
+```bash
+* Check the datatypes
+campaign_df.dtypes
+```
+<img width="140" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/19068e43-6900-4167-a8bb-3ec995220777">
+
+```bash
+* Format the launched_date and end_date columns to datetime format
+from datetime import datetime as dt
+campaign_df['launch_date'] = pd.to_datetime(campaign_df['launch_date']).dt.strftime('%Y-%m-%d') 
+campaign_df['end_date'] = pd.to_datetime(campaign_df['end_date']).dt.strftime('%Y-%m-%d')
+campaign_df.head()
+```
+<img width="485" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/ff57e6f8-24a9-4148-8c88-c36ba7aa9d45">
+
+```bash
+* Merge the campaign_df with the category_df on the "category" column and the subcategory_df on the "subcategory" column.
+campaign_merged_df = campaign_df.merge(category_df, on='category', how='left').merge(subcategory_df, on='subcategory', how='left')
+campaign_merged_df.tail(10)
+```
+<img width="484" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/35bd2a25-6f4b-4e6b-8596-9c65cb101d1b">
+
+```bash
+* Drop unwanted columns
+campaign_cleaned = campaign_merged_df.drop(['staff_pick', 'spotlight', 'category & sub-category','category', 'subcategory'], axis=1)
+campaign_cleaned.head()
+```
+<img width="484" alt="image" src="https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126307180/6ed2ecd9-417b-452b-a4b4-5fe3c2ecf896">
+
+```bash
+* Export the DataFrame as a CSV file. 
+campaign_cleaned.to_csv('Resources/campaign.csv', index=False)
+```
 ### Create the Contacts DataFrame
 
 * Describe any process, steps, codes or graphs etc.
