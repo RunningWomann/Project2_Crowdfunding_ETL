@@ -5,7 +5,8 @@
 
 ### Team Members: Chun Zhao, Jing Xu, Jerrett Williams, Cassie Contreras
 
-### Solution is in ETL_Mini_Project_Final_Code
+### Solution is in ETL_Mini_Project_Final_Code.
+We used a relational database, utilizing python in jupyter notebook and sql in pgadmin.
 
 ## Description
 
