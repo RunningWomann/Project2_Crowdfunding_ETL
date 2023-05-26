@@ -5,12 +5,26 @@
 
 ### Team Members: Chun Zhao, Jing Xu, Jerrett Williams, Cassie Contreras
 
+### Solution is in ETL_Mini_Project_Final_Code
+
 ## Description
 
 For the ETL mini project, you will work with a partner to practice building an ETL pipeline using Python, Pandas, and either Python dictionary methods or regular expressions to extract and transform the data. After you transform the data, you'll create four CSV files and use the CSV file data to create an ERD and a table schema. Finally, you’ll upload the CSV file data into a Postgres database.
 
-## Resources
-Project2 ETL Files
+## Data Sources
+(CSV Files in Resources Folder)
+
+campaign.csv
+
+category.csv
+
+contacts.csv
+
+contacts.xlsx
+
+crowdfunding.xlsx
+
+subcategory.csv
 
 ## Subsections:
 ### Create the Category and Subcategory DataFrames
