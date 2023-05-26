@@ -207,22 +207,7 @@ campaign_cleaned.to_csv('Resources/campaign.csv', index=False)
 ```
 ### Create the Contacts DataFrame
 
-* Describe any process, steps, codes or graphs etc.
-* Any modifications needed to be made to files/folders
-* Step-by-step bullets
-```
-code blocks for commands
-```
+
 ### Create the Crowdfunding Database
 
-* Describe any process, steps, codes or graphs etc.
-* Any modifications needed to be made to files/folders
-* Step-by-step bullets
-```
-code blocks for commands
-```
 
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [xxxxxx](https://github.com/matiassingers/awesome-readme)
