@@ -358,4 +358,5 @@ REFERENCES "subcategory" ("subcategory_id");
 
 
 
+![crowdfunding_db_QuickDBD-export](https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126130038/8857325a-d38c-4aff-bdfc-e474deaffca4)
 
