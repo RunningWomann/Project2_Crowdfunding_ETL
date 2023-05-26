@@ -209,5 +209,81 @@ campaign_cleaned.to_csv('Resources/campaign.csv', index=False)
 
 
 ### Create the Crowdfunding Database
+```
+CREATE TABLE "campaign" (
+    "cf_id" int   NOT NULL,
+    "contact_id" int   NOT NULL,
+    "company_name" varchar(100)   NOT NULL,
+    "description" text   NOT NULL,
+    "goal" numeric(10,2)   NOT NULL,
+    "pledged" numeric(10,2)   NOT NULL,
+    "outcome" varchar(50)   NOT NULL,
+    "backers_count" int   NOT NULL,
+    "country" varchar(10)   NOT NULL,
+    "currency" varchar(10)   NOT NULL,
+    "launch_date" date   NOT NULL,
+    "end_date" date   NOT NULL,
+    "category_id" varchar(10)   NOT NULL,
+    "subcategory_id" varchar(10)   NOT NULL,
+    CONSTRAINT "pk_campaign" PRIMARY KEY (
+        "cf_id"
+     )
+);
+
+CREATE TABLE "category" (
+    "category_id" varchar(10)   NOT NULL,
+    "category_name" varchar(50)   NOT NULL,
+    CONSTRAINT "pk_category" PRIMARY KEY (
+        "category_id"
+     )
+);
+
+CREATE TABLE "subcategory" (
+    "subcategory_id" varchar(10)   NOT NULL,
+    "subcategory_name" varchar(50)   NOT NULL,
+    CONSTRAINT "pk_subcategory" PRIMARY KEY (
+        "subcategory_id"
+     )
+);
+
+CREATE TABLE "contacts" (
+    "contact_id" int   NOT NULL,
+    "first_name" varchar(50)   NOT NULL,
+    "last_name" varchar(50)   NOT NULL,
+    "email" varchar(100)   NOT NULL,
+    CONSTRAINT "pk_contacts" PRIMARY KEY (
+        "contact_id"
+     )
+);
+
+
+ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_contact_id" FOREIGN KEY("contact_id")
+REFERENCES "contacts" ("contact_id");
+
+ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_category_id" FOREIGN KEY("category_id")
+REFERENCES "category" ("category_id");
+
+ALTER TABLE "campaign" ADD CONSTRAINT "fk_campaign_subcategory_id" FOREIGN KEY("subcategory_id")
+REFERENCES "subcategory" ("subcategory_id");
+
+```
+
+![campaign_sql_table](https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126130038/2e257359-359b-465b-b046-09d2c8133200)
+
+
+
+
+![category_sql_table](https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126130038/d02a175f-3057-4c14-8b18-c038699a446b)
+
+
+
+![contacts_sql_table](https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126130038/28d706da-03d1-465a-8324-9b731642b724)
+
+
+
+![subcategory_sql_table](https://github.com/RunningWomann/Project2_Crowdfunding_ETL/assets/126130038/9f80784a-324c-4380-b1b9-773d821a14d6)
+
+
+
 
 
